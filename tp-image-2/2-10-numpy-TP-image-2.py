@@ -121,11 +121,25 @@ from matplotlib import pyplot as plt
 
 colors = {}
 with open("rgb-codes.txt") as file:
-    #values = {line.split()[0]:line.split()[1:] for line in file}
     for line in file:
         colorName, *rgb = line.split()
-        colors[colorName]
-print(colors) 
+        colors[colorName] = list(map(int,rgb))
+print(colors['Red'])
+print(colors['Lime'])
+print(colors['Blue'])
+
+
+# %%
+#I don't understand what is expected
+def patchwork(patchColors, globalColors):
+    len(patchColors)
+    patchColors = list(map(globalColors.get,patchColors))
+    print(patchColors)
+    patch = np.array(patchColors)
+    np.random.shuffle(patch)
+    print(patch)
+
+patchwork('Red Lime Blue Brown DarkGray Beige'.split(),colors)
 
 # %% [markdown]
 # ## Somme des valeurs RGB d'une image
