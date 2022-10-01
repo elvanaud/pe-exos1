@@ -119,6 +119,14 @@ from matplotlib import pyplot as plt
 # %%
 # votre code
 
+colors = {}
+with open("rgb-codes.txt") as file:
+    #values = {line.split()[0]:line.split()[1:] for line in file}
+    for line in file:
+        colorName, *rgb = line.split()
+        colors[colorName]
+print(colors) 
+
 # %% [markdown]
 # ## Somme des valeurs RGB d'une image
 
