@@ -130,16 +130,22 @@ print(colors['Blue'])
 
 
 # %%
-#I don't understand what is expected
 def patchwork(patchColors, globalColors):
-    len(patchColors)
+    #Make a square fitted to show them all:
+    nbColors = len(patchColors)
+    h = int(np.sqrt(nbColors))
+    print(h)
+    if h**2 != nbColors:
+        h += 1
+    patchColors += ['White']*(h**2-nbColors) #we fill the rest of the square with wite
+    
     patchColors = list(map(globalColors.get,patchColors))
-    print(patchColors)
     patch = np.array(patchColors)
     np.random.shuffle(patch)
-    print(patch)
+    return patch.reshape((h,h,3))
 
-patchwork('Red Lime Blue Brown DarkGray Beige'.split(),colors)
+res = patchwork('Red Lime Blue Brown DarkGray Beige'.split(),colors)
+plt.imshow(res);
 
 # %% [markdown]
 # ## Somme des valeurs RGB d'une image
