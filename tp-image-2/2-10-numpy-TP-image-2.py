@@ -145,7 +145,23 @@ def patchwork(patchColors, globalColors):
     return patch.reshape((h,h,3))
 
 res = patchwork('Red Lime Blue Brown DarkGray Beige'.split(),colors)
+#plt.imshow(res);
+
+#Select random colors without repetition:
+availableColors = list(colors.keys())
+size = len(availableColors)
+selection = []
+for i in range(50):
+    colorIndex = np.random.randint(0,size)
+    selection.append(availableColors[colorIndex])
+    availableColors[colorIndex] = availableColors[-1]
+    size -= 1
+
+res = patchwork(selection,colors)
 plt.imshow(res);
+
+# %%
+#TODO: finir ça
 
 # %% [markdown]
 # ## Somme des valeurs RGB d'une image
@@ -176,6 +192,8 @@ plt.imshow(res);
 
 # %%
 # votre code
+img = plt.imread('les-mines.jpg')
+
 
 # %% [markdown]
 # ## Image en sépia
