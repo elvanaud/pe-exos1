@@ -158,7 +158,9 @@ for i in range(50):
     size -= 1
 
 res = patchwork(selection,colors)
+plt.axis('off') #thanks stackoverflow
 plt.imshow(res);
+
 
 # %%
 #TODO: finir ça
