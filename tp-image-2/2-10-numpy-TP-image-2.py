@@ -231,6 +231,8 @@ print(img2.max(), img2.dtype)
 img3 = img2.astype(np.uint8)
 img3[img3 >= 127] = 255
 img3[img3 < 127] = 0
+plt.imshow(img3, cmap='Greys');
+np.unique(img3)
 
 
 # %% [markdown]
@@ -262,6 +264,14 @@ img3[img3 < 127] = 0
 
 # %%
 # votre code
+def sepia(img):
+    coeffs = np.array([[0.393, 0.769, 0.189],[0.349, 0.686, 0.168],[0.272, 0.534, 0.131]])
+    res = img.astype(float).dot(coeffs.T)
+    res /= res.max()
+    return res
+
+res = sepia(img)
+plt.imshow(res);
 
 # %% {"scrolled": true}
 # INDICE:
