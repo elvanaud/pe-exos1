@@ -214,6 +214,18 @@ plt.imshow(img);
 # votre code
 img = plt.imread('les-mines.jpg')
 
+#img1 = np.ndarray(img.shape,dtype=np.uint8)
+img1 = img[:,:,0] + img[:,:,1] + img[:,:,2]
+plt.imshow(img1);
+plt.show()
+print(img1.max(), img1.dtype)
+
+img2 = np.sum(img, axis=2)
+plt.imshow(img2);
+print(img2.max(), img2.dtype)
+#Summing with + keeps the datatype of the original data which results in an overflow,
+#np.sum uses by default the default integer type of the machine which is in general, as well as in my case, a uint32
+
 
 # %% [markdown]
 # ## Image en sépia
