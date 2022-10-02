@@ -227,6 +227,12 @@ print(img2.max(), img2.dtype)
 #np.sum uses by default the default integer type of the machine which is in general, as well as in my case, a uint32
 
 
+# %%
+img3 = img2.astype(np.uint8)
+img3[img3 >= 127] = 255
+img3[img3 < 127] = 0
+
+
 # %% [markdown]
 # ## Image en sépia
 
