@@ -272,6 +272,8 @@ def sepia(img):
 
 res = sepia(img)
 plt.imshow(res);
+plt.show();
+plt.imshow(sepia(plt.imread('patchwork.jpg')));
 
 # %% {"scrolled": true}
 # INDICE:
@@ -311,3 +313,15 @@ A.shape, B.shape, C.shape
 
 # %%
 # votre code
+from PIL import Image
+#les-mines.jpg: 726 ko
+img1 = Image.open("les-mines.jpg")
+img2 = plt.imread("les-mines.jpg")
+plt.imsave('pltSave.jpg',img2) #134 ko
+img1.save('pilSave.jpg', quality=100) #560 ko
+plt.imshow(plt.imread('pltSave.jpg'));
+plt.show()
+plt.imshow(plt.imread('pilSave.jpg'));
+#there is no detectable difference at least with my screen
+
+# %%
