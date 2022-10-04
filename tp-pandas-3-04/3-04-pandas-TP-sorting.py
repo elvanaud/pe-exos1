@@ -198,8 +198,9 @@ new[~new['Age'].isna()]
 
 # %%
 df = pd.DataFrame(np.random.randint(0,101,size=(4,5)),columns=list("abcde"), index="un deux trois quatre".split())
-
+display(df)
 df.sort_values('trois', axis=1, inplace=True)
+display(df)
 
 # %% [markdown] {"tags": ["level_intermediate"]}
 # ## tri d'une dataframe selon l'index
@@ -223,3 +224,13 @@ df.sort_values('trois', axis=1, inplace=True)
 # Cela peut, par exemple, servir à réordonner la dataframe du Titanic  
 # qui a été triée en place dans l'ordre des `Age`, `Fare` croissants  
 # par ordre d'index de ligne croissants
+
+# %%
+df = pd.DataFrame(np.random.randint(0,101,size=(4,5)),columns=list("abcde"), index="un deux trois quatre".split())
+display(df)
+df.sort_index(axis=0, inplace=True)
+display(df)
+df.sort_index(axis=1, inplace=True)
+display(df)
+
+# %%
