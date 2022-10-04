@@ -169,7 +169,7 @@ df.set_index('PassengerId', inplace=True)
 df.loc[[673,746]] #they are both 70 years old
 new = df.sort_values('Age Fare'.split(), na_position='first').copy()
 missingAges = new[new['Age'].isna()]
-len(missingAges) #177 missing ages, placed at the end by default, but I used na_position to put them in the beginning
+len(missingAges) #177 missing ages, placed at the end by default, but I used na_position to put them at the beginning
 new[~new['Age'].isna()]
 
 # %% [markdown] {"tags": ["level_intermediate"]}
@@ -197,6 +197,9 @@ new[~new['Age'].isna()]
 # <br>
 
 # %%
+df = pd.DataFrame(np.random.randint(0,101,size=(4,5)),columns=list("abcde"), index="un deux trois quatre".split())
+
+df.sort_values('trois', axis=1, inplace=True)
 
 # %% [markdown] {"tags": ["level_intermediate"]}
 # ## tri d'une dataframe selon l'index
