@@ -533,3 +533,6 @@ df3i
 
 # %% tags=["level_intermediate"]
 # votre code
+df1i.merge(df2i, left_index=True, right_on='name')
+
+# %%
