@@ -100,14 +100,19 @@ toujours pour fixer les idées, on doit trouver à la fin une dataframe qui a un
 quelques indices valides pour tout le TP
 
 ```{code-cell} ipython3
-df.dropna(axis=1,how='all')
-df.head()
+df.dropna(axis=1,how='all', inplace=True)
+display(df.head())
 # df.drop?
 
-# pd.Series.unique?
+print("Valeurs uniques:",df['cLT2FREQ'].unique())
+unspecifiedLines = df['cLT2FREQ'].isna().sum()
+print("On a ", unspecifiedLines,"lignes non renseignées")
+print("On devrait avoir", df.shape[0] - unspecifiedLines, "lignes")
+cleaned = df[~df['cLT2FREQ'].isna()]
+display(cleaned)
 
-# df.to_excel?
-# !pip install openpyxl
+cleaned.to_excel("output.xlsx")
+#pip install openpyxl
 ```
 
 ---
