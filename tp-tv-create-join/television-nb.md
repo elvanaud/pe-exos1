@@ -103,7 +103,7 @@ quelques indices valides pour tout le TP
 
 # df.drop?
 
-#J'ai juste fait tout le TP ici d'une traite avant de me rendre compte que toutes ces ét
+#J'ai juste fait tout le TP ici d'une traite avant de me rendre compte que toutes ces étapes étaient guidées
 df.dropna(axis=1,how='all', inplace=True)
 display(df.head())
 print("Valeurs uniques:",df['cLT2FREQ'].unique())
