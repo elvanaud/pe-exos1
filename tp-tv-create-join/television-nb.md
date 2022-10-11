@@ -100,10 +100,10 @@ toujours pour fixer les idées, on doit trouver à la fin une dataframe qui a un
 quelques indices valides pour tout le TP
 
 ```{code-cell} ipython3
+
+# df.drop?
 df.dropna(axis=1,how='all', inplace=True)
 display(df.head())
-# df.drop?
-
 print("Valeurs uniques:",df['cLT2FREQ'].unique())
 unspecifiedLines = df['cLT2FREQ'].isna().sum()
 print("On a ", unspecifiedLines,"lignes non renseignées")
@@ -127,7 +127,7 @@ la première étape donc, consiste à supprimer les colonnes vides
 
 ```{code-cell} ipython3
 # on recharge pour être sûr
-df = pd.read_csv("data/television.txt", sep="\t")
+df = pd.read_csv("television.txt", sep="\t")
 df.shape
 ```
 
@@ -144,7 +144,8 @@ le mieux c'est d'utiliser `dropna`
 
 ```{code-cell} ipython3
 # à vous
-...
+df.dropna(axis=1,how='all', inplace=True)
+display(df.head())
 ```
 
 ```{code-cell} ipython3
@@ -168,7 +169,7 @@ donc voyons comment on peut faire le même nettoyage, mais de manière plus fine
 
 ```{code-cell} ipython3
 # on recharge pour être sûr
-df = pd.read_csv("data/television.txt", sep="\t")
+df = pd.read_csv("television.txt", sep="\t")
 ```
 
 +++ {"tags": ["level_basic"]}
@@ -180,7 +181,7 @@ d'abord comment feriez-vous, étant donné le nom d'une colonne, pour savoir si 
 ```{code-cell} ipython3
 # à vous 
 def is_empty_column(df, colname):
-    ...
+    return df[colname].isna().all()
 ```
 
 ```{code-cell} ipython3
@@ -210,9 +211,10 @@ ensuite il ne reste qu'à calculer la liste des colonnes vides, pour la passer �
 # à vous
 
 # calculez la liste des colonnes vides
-empty_columns = ...
+empty_columns = [colName for colName in df.columns if is_empty_column(df,colName)]
 
 # puis utilisez df.drop
+df.drop(empty_columns, axis=1, inplace=True)
 ```
 
 ```{code-cell} ipython3
@@ -228,6 +230,7 @@ Bien sûr on a découpé le problème en deux mais en fait ça peut se récrire 
 # à vous
 
 # récrire tout ceci en une seule passe
+df.drop([colName for colName in df.columns if is_empty_column(df,colName)], axis=1, inplace=True)
 ```
 
 ```{code-cell} ipython3
@@ -258,7 +261,7 @@ la méthode la plus simple consiste à utiliser [`Series.unique`](https://pandas
 
 ```{code-cell} ipython3
 # à vous
-unique1 = ...
+unique1 = df['cLT2FREQ'].unique()
 ```
 
 ```{code-cell} ipython3
@@ -276,7 +279,7 @@ np.all(unique1[:-1] == np.arange(1, 4)) and np.isnan(unique1[-1])
 
 # point de réflexion : pourquoi ceci ne renvoie-t-il pas True ?
 unique1.sort()
-np.all(unique1 == np.array([1., 2., 3., np.nan]))
+np.all(unique1[:-1] == np.array([1., 2., 3.]))#, np.nan])) #J'ai modifié la ligne, on voit que c'est la comparaison avec np.nan qui pose problème
 ```
 
 ### un ensemble
