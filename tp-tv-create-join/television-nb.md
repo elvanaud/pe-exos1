@@ -102,6 +102,8 @@ quelques indices valides pour tout le TP
 ```{code-cell} ipython3
 
 # df.drop?
+
+#J'ai juste fait tout le TP ici d'une traite avant de me rendre compte que toutes ces ét
 df.dropna(axis=1,how='all', inplace=True)
 display(df.head())
 print("Valeurs uniques:",df['cLT2FREQ'].unique())
@@ -302,7 +304,7 @@ comment feriez-vous pour traduire 'brutalement' la colonne `cLT2FREQ` en un ense
 
 ```{code-cell} ipython3
 # à vous
-unique2 = ...
+unique2 = set(df['cLT2FREQ'])
 ```
 
 ```{code-cell} ipython3
@@ -323,7 +325,7 @@ dans un premier temps on vous demande de calculer le nombre de lignes concernée
 
 ```{code-cell} ipython3
 # à vous
-nb_lines_to_clean = ...
+nb_lines_to_clean  = df['cLT2FREQ'].isna().sum()
 ```
 
 ```{code-cell} ipython3
@@ -353,7 +355,7 @@ expected_lines
 :hide_input: false
 
 # on recharge à tout hasard
-df = pd.read_csv("data/television.txt", sep="\t").dropna(axis='columns', how='all')
+df = pd.read_csv("television.txt", sep="\t").dropna(axis='columns', how='all')
 print(df.shape)
 ```
 
@@ -370,7 +372,7 @@ option 1: on peut utiliser `df.drop()`, l'avantage étant qu'on peut faire l'op�
 ```{code-cell} ipython3
 # à vous
 
-# df.drop(...)
+df.drop(df.index[df['cLT2FREQ'].isna()], inplace=True)
 ```
 
 ```{code-cell} ipython3
@@ -386,7 +388,7 @@ df.shape == (7386, 4)
 :hide_input: false
 
 # on recharge à tout hasard
-df = pd.read_csv("data/television.txt", sep="\t").dropna(axis='columns', how='all')
+df = pd.read_csv("television.txt", sep="\t").dropna(axis='columns', how='all')
 print(df.shape)
 ```
 
@@ -396,7 +398,7 @@ option 2: il y a plein d'autres façons de faire, on peut aussi utiliser tout si
 
 ```{code-cell} ipython3
 # à vous
-df = ...
+df = df[~df['cLT2FREQ'].isna()]
 ```
 
 ```{code-cell} ipython3
@@ -417,7 +419,7 @@ je vous laisse conclure le TP, il s'agit d'enregistrer nos données nettoyées d
 
 filename = "television.xlsx"
 
-# df.to_excel?
+df.to_excel(filename)
 ```
 
 je vous laisse éventuellement vérifier votre code en rechargeant sous excel le fichier produit
