@@ -509,6 +509,7 @@ df3
 
 # %%
 # votre code
+pd.concat([df1.merge(df2),df3])
 
 # %% [markdown] tags=["level_intermediate"]
 # ### **exercice** - intermédiaire
